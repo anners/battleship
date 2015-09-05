@@ -1,10 +1,13 @@
-Class Ship
+class Ship
 #https://en.wikipedia.org/wiki/Battleship_(game)
+
+	attr_accessor :num_hits, :coordinates
 
 	def initialize(name, size)
 		@ship_name = name
 		@ship_size = size
 		@num_hits = 0
+		@coordinates = []
 	end
 
 	def self.battleship 
@@ -26,5 +29,10 @@ Class Ship
 	def self.patrol_boat
 		(new "patrol_boat", 2)
 	end
+
+	def hit
+		@num_hits += 1
+	end
+
 
 end

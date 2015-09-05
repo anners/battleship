@@ -1,34 +1,33 @@
 #!/usr/bin/env ruby
 
+require './lib/ship'
+require './lib/board'
+
 puts "you sunk my battleship"
 
 @my_board = Hash.new
 @your_board = Hash.new
 @battleships = ["1"]
 
-def create_board () 
-	board = Hash.new
-	('a'..'j').each do |y| 
-		(1..10).each do |x|
-			board["#{y}#{x}"] = "X"
-		end
-	end
-	return board
-end
+computer_board = Board.new
 
-def print_board (board)
-	('a'..'j').each do |y|
-		(1..10).each do |x|
-			print board["#{y}#{x}"]
-		end
-		puts
-	end
-end
+computer_board.create
 
+computer_board.print
 
-@my_board = create_board()
-print_board(@my_board)
-@my_board["a3"] = "O"
-system("clear")
-print_board(@my_board)
+#computer_board.update("a3", "B")
 
+#computer_board.print
+
+#@my_board = create_board()
+#print_board(@my_board)
+#@my_board["a3"] = "O"
+#system("clear")
+#print_board(@my_board)
+
+bs = Ship.battleship
+
+bs.hit
+puts bs.num_hits
+bs.coordinates = ["a1", "a2", "a3"]
+puts bs.coordinates
