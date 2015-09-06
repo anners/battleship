@@ -75,7 +75,7 @@ end
 def main_menu
 	puts "What do you want to do?"
 	puts "1. play"
-	puts "2. score"
+	puts "2. see your current score"
 	puts "3. see your current board"
 	puts "4. quit"
 	print "please enter a number: "
