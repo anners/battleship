@@ -4,10 +4,10 @@ class Board
 		@board = Hash.new
 	end
 
-	def create() 
+	def create
 		('a'..'j').each do |y| 
 			(1..10).each do |x|
-				@board["#{y}#{x}"] = "X"
+				@board["#{y}#{x}"] = "#"
 			end
 		end
 	end
@@ -16,16 +16,7 @@ class Board
 		@board["#{coordinate}"] = symbol
 	end
 
-	def print_it()
-		('a'..'j').each do |y|
-			(1..10).each do |x|
-				print @board["#{y}#{x}"]
-			end
-			puts
-		end
-	end
-
-	def print
+	def print_it
 		('a'..'j').each do |y|
 			(1..10).each do |x|
 				print @board["#{y}#{x}"]

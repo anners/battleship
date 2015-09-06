@@ -2,6 +2,7 @@ class Ship
 #https://en.wikipedia.org/wiki/Battleship_(game)
 
 	attr_accessor :num_hits, :coordinates
+	attr_reader :ship_name
 
 	def initialize(name, size)
 		@ship_name = name
@@ -34,5 +35,12 @@ class Ship
 		@num_hits += 1
 	end
 
+	def sunk
+		sunk = false
+		if @num_hits == @ship_size
+			sunk = true
+		end
+		return sunk
+	end
 
 end

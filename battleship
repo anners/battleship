@@ -3,31 +3,66 @@
 require './lib/ship'
 require './lib/board'
 
-puts "you sunk my battleship"
 
-@my_board = Hash.new
-@your_board = Hash.new
-@battleships = ["1"]
-
-computer_board = Board.new
-
-computer_board.create
-
-computer_board.print
-
-#computer_board.update("a3", "B")
-
-#computer_board.print
-
-#@my_board = create_board()
-#print_board(@my_board)
-#@my_board["a3"] = "O"
 #system("clear")
-#print_board(@my_board)
 
-bs = Ship.battleship
+# create ships 
+@bs = Ship.battleship
+@bs.coordinates = ["a1", "a2", "a3", "a4"]
 
-bs.hit
-puts bs.num_hits
-bs.coordinates = ["a1", "a2", "a3"]
-puts bs.coordinates
+@ac = Ship.aircraft_carrier
+@ac.coordinates = ["e5", "e6", "e7", "e8", "e9"]
+
+@sub = Ship.submarine
+@sub.coordinates = ["b1", "c1", "d1"]
+
+@destroyer = Ship.destroyer
+@destroyer.coordinates = ["h3", "i3", "j3"]
+
+@pb = Ship.patrol_boat 
+@pb.coordinates = ["c9", "c10"]
+
+@ships = [@bs, @ac, @sub, @destroyer, @pb]
+
+
+#create and update the computer board with the ships
+@computer_board = Board.new
+@player1_board = Board.new
+@computer_board.create
+@player1_board.create
+
+@ships.each do |ship|
+	ship.coordinates.each do |c|
+		@computer_board.update("#{c}", "B")
+	end
+end
+
+#@computer_board.print_it
+
+
+#play
+def check_for_hit (shot)
+	@ships.each do |ship|
+		ship.coordinates.each do |c|
+			if c.eql? shot
+				#update the player board with a hit
+				puts "Hit on #{ship.ship_name}"
+				@player1_board.update("{shot}", "H")
+				#increment ship hit 
+				ship.hit
+				if ship.sunk 
+					puts "you sunk my #{ship.ship_name}"
+				end
+				break
+			end
+		end
+	end
+	#if you made it this far it is a miss
+	puts "Miss"
+	@player1_board.update("{shot}", "M")
+end
+
+check_for_hit("c9")
+check_for_hit("c8")
+check_for_hit("c10")
+
