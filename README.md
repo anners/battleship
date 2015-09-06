@@ -5,5 +5,6 @@
  saturday afternoon, because of a converstation 
  I had earlier this week.
 
+ how to play battleship http://www.hasbro.com/common/instruct/battleship.pdf
 
  to play from the cli ./battleship
